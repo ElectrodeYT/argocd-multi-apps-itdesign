@@ -6,25 +6,28 @@ metadata:
     argocd.argoproj.io/instance: applicationsets
 spec:
   generators:
-  - git:
-      repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
-      revision: master
-      directories:
-      - path: applications/*
+#  - git:
+#      repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
+#      revision: master
+#      directories:
+#      - path: applications/*
+  - list:
+    elements:
+    - name: nginx
   template:
     metadata:
       finalizers:
       - resources-finalizer.argocd.argoproj.io
-      name: '{{path.basename}}'
+      name: '{{name}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
         targetRevision: master
-        path: '{{path}}'
+        path: 'applications/{{}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{path.basename}}'
+        namespace: 'argocd-{{name}}'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
