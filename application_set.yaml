@@ -6,14 +6,14 @@ metadata:
     argocd.argoproj.io/instance: applicationsets
 spec:
   generators:
+  - list:
+    elements:
+    - name: nginx
 #  - git:
 #      repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
 #      revision: master
 #      directories:
 #      - path: applications/*
-  - list:
-    elements:
-    - name: nginx
   template:
     metadata:
       finalizers:
