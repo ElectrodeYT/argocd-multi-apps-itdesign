@@ -7,8 +7,8 @@ metadata:
 spec:
   generators:
   - list:
-    elements:
-    - name: nginx
+      elements:
+      - name: nginx
 #  - git:
 #      repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
 #      revision: master
