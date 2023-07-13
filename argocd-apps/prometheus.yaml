@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: "kube-prometheus-stack"
   namespace: "argocd-kube-prometheus-stack"
-  annotations: []
+#  annotations:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 
@@ -14,7 +14,7 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+   - CreateNamespace=true
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: '{{ .Values.kube_prometheus_stack.chartver }}'
