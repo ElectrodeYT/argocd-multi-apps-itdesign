@@ -26,6 +26,9 @@ spec:
         repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
         targetRevision: HEAD
         path: 'applications/{{name}}'
+        helm:
+          version: v3
+          releaseName: "{{name}}"
       destination:
         server: https://kubernetes.default.svc
         namespace: 'argocd-{{name}}'
