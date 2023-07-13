@@ -11,6 +11,8 @@ spec:
       - path: applications/*
   template:
     metadata:
+      finalizers:
+      - resources-finalizer.argocd.argoproj.io
       name: '{{path.basename}}'
     spec:
       project: default
