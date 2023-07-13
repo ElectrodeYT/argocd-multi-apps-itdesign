@@ -18,9 +18,9 @@ spec:
         repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
         targetRevision: HEAD
         path: '{{path}}'
-      destination:
-        name: in-cluster
-        namespace: 'argocd-{{path.basename}}'
+#      destination:
+#        name: in-cluster
+#        namespace: 'argocd-{{path.basename}}'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
