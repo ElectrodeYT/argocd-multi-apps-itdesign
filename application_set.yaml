@@ -19,7 +19,7 @@ spec:
         targetRevision: HEAD
         path: '{{path}}'
       destination:
-        server: https://kubernetes.default.svc
+        name: in-cluster
         namespace: 'argocd-{{path.basename}}'
       syncPolicy:
         syncOptions:
