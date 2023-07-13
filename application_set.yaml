@@ -11,16 +11,16 @@ spec:
       - path: applications/*
   template:
     metadata:
-      name: '{{ path.basename }}'
+      name: '{{path.basename}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
         targetRevision: HEAD
-        path: '{{ path }}'
+        path: '{{path}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: 'argocd-{{ path.basename }}'
+        namespace: 'argocd-{{path.basename}}'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
