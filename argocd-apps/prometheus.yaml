@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: "{{ .Values.cluster.name }}-kube-prometheus-stack"
+  name: "kube-prometheus-stack"
   namespace: "argocd-kube-prometheus-stack"
   annotations: []
   finalizers:
