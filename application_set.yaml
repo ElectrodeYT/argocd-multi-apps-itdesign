@@ -9,7 +9,11 @@ spec:
   - list:
       elements:
       - name: nginx
+        cluster: in-cluster
+        url: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
       - name: prometheus-operator
+        cluster: in-cluster
+        url: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
 #  - git:
 #      repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
 #      revision: master
