@@ -8,7 +8,7 @@ spec:
       repoURL: "https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git"
       revision: HEAD
       directories:
-      - path: applications/nginx
+      - path: applications/*
   template:
     metadata:
       name: "{{ path.basename }}"
