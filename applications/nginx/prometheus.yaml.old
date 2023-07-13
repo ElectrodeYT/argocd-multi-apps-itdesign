@@ -1,0 +1,87 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: "kube-prometheus-stack"
+  namespace: "argocd-kube-prometheus-stack"
+#  annotations:
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+   - CreateNamespace=true
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: '{{ .Values.kube_prometheus_stack.chartver }}'
+    chart: kube-prometheus-stack
+    plugin:
+      env:
+      - name: HELM_VALUES
+        value: |
+          fullnameOverride: "kube-prometheus-stack"
+          defaultRules:
+            create: true
+          alertmanager:
+            enabled: true
+            env:
+            - name: TZ
+              value: Europe/Vienna
+            service:
+              port: 9093
+              targetPort: 8081
+            alertmanagerSpec:
+              ingres:
+                enabled: true
+                hosts:
+                - alertmanager.demo.local
+                paths:
+                - /
+          prometheusOperator:
+            logFormat: json
+          grafana:
+            fullnameOverride: "grafana-kube-prometheus-stack-grafana"
+            enabled: true
+            useStatefulSet: true
+            env:
+              GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: false
+            defaultDashboardsTimezone: Europe/Vienna
+            grafana.ini:
+              sidecar:
+                datasources:
+                  enabled: true
+                  defaultDatasourceEnabled: true
+                  multicluster:
+                    global:
+                      enabled: false
+            additionalDataSources: []
+            persistence:
+              enabled: true
+              storageClassName: "default"
+              accessModes:
+              - ReadWriteOnce
+            ingress:
+              enabled: true
+              hosts:
+              - grafana.demo.local
+              paths:
+              - /
+          prometheus:
+            enabled: true
+            env:
+            - name: TZ
+              value: Europe/Vienna
+            service:
+              port: 9090
+              targetPort: 8081
+            ingress:
+              enabled: true
+              hosts:
+              - prometheus.demo.local
+              paths:
+              - /
+
