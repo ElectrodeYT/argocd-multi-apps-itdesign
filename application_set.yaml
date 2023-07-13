@@ -9,6 +9,7 @@ spec:
   - list:
       elements:
       - name: nginx
+      - name: prometheus-operator
 #  - git:
 #      repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
 #      revision: master
