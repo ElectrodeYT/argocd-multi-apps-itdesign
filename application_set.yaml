@@ -2,11 +2,13 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: applications
+  labels:
+    argocd.argoproj.io/instance: applicationsets
 spec:
   generators:
   - git:
       repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
-      revision: HEAD
+      revision: master
       directories:
       - path: applications/*
   template:
@@ -18,7 +20,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
-        targetRevision: HEAD
+        targetRevision: master
         path: '{{path}}'
       destination:
         server: https://kubernetes.default.svc
