@@ -23,7 +23,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
-        targetRevision: master
+        targetRevision: HEAD
         path: 'applications/{{name}}'
       destination:
         server: https://kubernetes.default.svc
