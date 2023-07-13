@@ -1,5 +1,0 @@
-kube_prometheus_stack:
-  chartver: 48.0
-
-cluster:
-  name: "kubernetessssss"
