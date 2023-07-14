@@ -2,8 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: application-list
-  labels:
-    argocd.argoproj.io/instance: applicationsets
 spec:
   generators:
   - list:
@@ -28,9 +26,6 @@ spec:
         repoURL: https://github.com/ElectrodeYT/argocd-multi-apps-itdesign.git
         targetRevision: HEAD
         path: 'applications/{{name}}'
-        helm:
-          version: v3
-          releaseName: "{{name}}"
       destination:
         server: https://kubernetes.default.svc
         namespace: 'argocd'
