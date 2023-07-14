@@ -21,8 +21,6 @@ spec:
 #      - path: applications/*
   template:
     metadata:
-      finalizers:
-      - resources-finalizer.argocd.argoproj.io
       name: '{{name}}'
     spec:
       project: default
@@ -35,7 +33,7 @@ spec:
           releaseName: "{{name}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: 'argocd-{{name}}'
+        namespace: 'argocd'
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
